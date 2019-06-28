@@ -10,7 +10,9 @@ var express 	= require("express"),
 
 mongoose.connect("mongodb://localhost/yelpcamp_Data",{ useNewUrlParser: true });
 app.use(bodyparser.urlencoded({extended:true}));
+app.use(express.static(__dirname + "/public"))
 app.set("view engine", "ejs");
+console.log(__dirname);
 seedDB();
 
 // Campground.create(
