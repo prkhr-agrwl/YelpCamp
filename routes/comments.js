@@ -32,6 +32,7 @@ router.post("/", middleWare.isLoggedIn, function(req, res){
 					campbyID.comments.push(comment);
 					campbyID.save();
 					//console.log(comment);
+					req.flash("success", "Bombs away.");
 					res.redirect("/campgrounds/"+req.params.id);
 				}
 			})
@@ -42,6 +43,7 @@ router.post("/", middleWare.isLoggedIn, function(req, res){
 //edit form
 router.get("/:comment_id/edit", middleWare.checkCommentOwnership, function(req, res){
 	Comment.findById(req.params.comment_id, function(err, comment){
+		req.flash("success", "I sense regret.");
 		res.render("comments/edit", {campground_id:req.params.id, comment:comment});		
 	});
 });
@@ -49,6 +51,7 @@ router.get("/:comment_id/edit", middleWare.checkCommentOwnership, function(req, 
 //update put route
 router.put("/:comment_id/", middleWare.checkCommentOwnership, function(req, res){
 	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, comment){
+		req.flash("success", "What will you do without me.");
 		res.redirect("/campgrounds/"+req.params.id);		
 	});
 });
@@ -56,6 +59,7 @@ router.put("/:comment_id/", middleWare.checkCommentOwnership, function(req, res)
 //comment destroy route
 router.delete("/:comment_id", middleWare.checkCommentOwnership, function(req, res){
 	Comment.findByIdAndRemove(req.params.comment_id, function(err){
+		req.flash("success", "Gone. Shred to atoms.");
 		res.redirect("/campgrounds/"+req.params.id);		
 	});
 });

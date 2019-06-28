@@ -30,6 +30,7 @@ router.post("/", middleWare.isLoggedIn, function(req, res){
 				console.log(err);
 			}
 			else{
+				req.flash("success", "Ah shit, here we go again.");
 				//console.log(camp);
 				res.redirect("/campgrounds");
 			}
@@ -63,6 +64,7 @@ router.get("/:id/edit", middleWare.checkCampOwnership, function(req, res){
 //update put route
 router.put("/:id", middleWare.checkCampOwnership, function(req, res){
 	Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampbyID){
+		req.flash("success", "Mmmm, smells fresh in here.");
 		res.redirect("/campgrounds/"+req.params.id);
 	});
 });
@@ -70,6 +72,7 @@ router.put("/:id", middleWare.checkCampOwnership, function(req, res){
 //delete route
 router.delete("/:id", middleWare.checkCampOwnership, function(req, res){
 	Campground.findByIdAndRemove(req.params.id, function(err){
+		req.flash("success", "Gone. Shred to atoms.");
 		res.redirect("/campgrounds")
 	});
 });
