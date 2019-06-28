@@ -1,6 +1,6 @@
 var express	 	= require("express"),
 	router  	= express.Router({mergeParams:true}),
-	Comment    	= require("../models/comments"),
+	Comment    	= require("../models/comment"),
 	User   		= require("../models/user"),
 	passport	= require("passport");
 
@@ -47,13 +47,5 @@ router.get("/logout",function(req, res){
 	req.logout();
 	res.redirect("/campgrounds");
 });
-
-//check if loggedIn
-function isLoggedIn(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	}
-	res.redirect("/login")
-}
 
 module.exports = router;
