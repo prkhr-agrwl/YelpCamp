@@ -1,6 +1,6 @@
 <% include ../partials/header %>
 
-<div clas="container">
+<div class="container">
 	<div class="row">
 		<div class="col-md-3">
 			<p class="lead">YelpCamp</p>
@@ -17,6 +17,9 @@
 					<h4 class="pull-right">Rs.69/night</h4>
 					<h3><a><%= campground.name %></a></h3>
 					<p><%= campground.description %></p>
+					<p>
+						<em>Submitted by :<strong> <%= campground.author.username %></strong></em>
+					</p>
 				</div>
 			</div>
 			<div class="well">
@@ -27,7 +30,7 @@
 				<% campground.comments.forEach(function(comment){ %>
 					<div class="row">
 						<div class="col-md-12">
-							<strong><%= comment.author%></strong>
+							<strong><%= comment.author.username%></strong>
 							<span class="pull-right">10 sex ago</span>
 							<p>
 								<%= comment.text %>

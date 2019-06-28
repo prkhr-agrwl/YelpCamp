@@ -31,25 +31,25 @@ function seedDB(){
                 console.log(err);
             }
             console.log("removed all comments");
-			//add a few camps
-			data.forEach(function(seed){
-				Campground.create(seed, function(err, camp){
-					if(err) console.log(err);
-					else console.log("added a camp");
-					//add a few comments
-					Comment.create({
-						text: "This place is great, but I wish there was internet",
-	                    author: "Homer"
-					}, function(err, comment){
-						if(err) console.log(err);
-						else{
-							camp.comments.push(comment._id);
-							camp.save();
-							console.log("added a comment");
-						}
-					});
-				});
-			});
+		// 	//add a few camps
+		// 	data.forEach(function(seed){
+		// 		Campground.create(seed, function(err, camp){
+		// 			if(err) console.log(err);
+		// 			else console.log("added a camp");
+		// 			//add a few comments
+		// 			Comment.create({
+		// 				text: "This place is great, but I wish there was internet",
+	 //                    author: "Homer"
+		// 			}, function(err, comment){
+		// 				if(err) console.log(err);
+		// 				else{
+		// 					camp.comments.push(comment._id);
+		// 					camp.save();
+		// 					console.log("added a comment");
+		// 				}
+		// 			});
+		// 		});
+		// 	});
 		});
 	});
 
